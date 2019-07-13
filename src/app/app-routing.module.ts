@@ -1,3 +1,4 @@
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { LoginComponent } from './login/login.component';
@@ -13,9 +14,11 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'my/orders', component: MyOrdersComponent },
   { path: 'check-out', component: CheckOutComponent },
   { path: 'order-success', component: OrderSuccessComponent },
-  { path: 'admin/products', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  
   // Admin Routes
   { path: 'admin/products', component: AdminProductsComponent },
   { path: 'admin/orders', component: AdminOrdersComponent }
