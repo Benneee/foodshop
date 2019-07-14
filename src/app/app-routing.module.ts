@@ -1,7 +1,8 @@
+import { SignupComponent } from './auth/signup/signup.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ProductsComponent } from './products/products.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'check-out', component: CheckOutComponent },
   { path: 'order-success', component: OrderSuccessComponent },
   { path: 'login', component: LoginComponent },
-  
+  { path: 'signup', component: SignupComponent },
+
   // Admin Routes
   { path: 'admin/products', component: AdminProductsComponent },
   { path: 'admin/orders', component: AdminOrdersComponent }
@@ -28,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
