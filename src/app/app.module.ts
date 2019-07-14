@@ -16,8 +16,11 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SignupComponent } from './auth/signup/signup.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +43,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
