@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
+  token: string;
   constructor(private router: Router) {}
 
   signupUser(email: string, password: string) {
@@ -18,7 +19,28 @@ export class AuthService {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .then(res => {
+        this.router.navigate(['/']);
+        firebase
+          .auth()
+          .currentUser.getIdToken()
+          .then((token: string) => (this.token = token));
+        console.log('sign in successful:', res);
+      })
+      .catch(err => console.log('error signing in:', err));
+  }
+
+  logoutUser() {
+    firebase.auth().signOut();
+    this.router.navigate(['login']);
+    this.token = null;
+  }
+
+  getToken() {
+    firebase
+      .auth()
+      .currentUser.getIdToken()
+      .then((token: string) => (this.token = token));
+    return this.token;
   }
 }
