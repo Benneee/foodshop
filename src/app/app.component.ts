@@ -10,9 +10,10 @@ export class AppComponent implements OnInit {
   title = 'foodshop';
 
   ngOnInit() {
-    firebase.initializeApp({
+    let config = {
       apiKey: 'AIzaSyBE-G56ji4aA1BLn2l1dbH57iDf57eyrp0',
       authDomain: 'foodshop-64c5b.firebaseapp.com'
-    });
+    };
+    // firebase.initializeApp(config);
   }
 }
