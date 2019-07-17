@@ -47,7 +47,7 @@
           aria-haspopup="true"
           aria-expanded="false"
           *ngIf="authService.isAuthenticated()"
-          >{{ user.email }}</a
+          >{{ authService.user.email }}</a
         >
         <div
           ngbDropdownMenu

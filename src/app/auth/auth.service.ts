@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -5,7 +6,11 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
   token: string;
-  constructor(private router: Router) {}
+  user: firebase.User;
+
+  constructor(private router: Router, private afAuth: AngularFireAuth) {
+    afAuth.authState.subscribe(user => (this.user = user));
+  }
 
   signupUser(email: string, password: string) {
     firebase
@@ -32,6 +37,7 @@ export class AuthService {
 
   logoutUser() {
     firebase.auth().signOut();
+    this.afAuth.auth.signOut();
     this.router.navigate(['login']);
     this.token = null;
   }

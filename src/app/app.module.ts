@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth/authguard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
@@ -46,7 +47,7 @@ import { AuthService } from './auth/auth.service';
     FormsModule,
     NgbModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

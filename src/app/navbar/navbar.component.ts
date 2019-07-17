@@ -1,7 +1,5 @@
-import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'navbar',
@@ -10,19 +8,14 @@ import * as firebase from 'firebase';
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
-  user: firebase.User;
 
-  constructor(
-    private authService: AuthService,
-    private afAuth: AngularFireAuth
-  ) {
-    afAuth.authState.subscribe(user => this.user = user);
-  }
+  // Because we always have to unsubscribe from Firebase, we'll use the async pipe to handle the subscription below in the template
+
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {}
 
   logout() {
     this.authService.logoutUser();
-    this.afAuth.auth.signOut();
   }
 }
