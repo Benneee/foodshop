@@ -1,14 +1,18 @@
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class AuthService {
   token: string;
   user: firebase.User;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private afAuth: AngularFireAuth
+  ) {
     afAuth.authState.subscribe(user => (this.user = user));
   }
 
@@ -21,11 +25,16 @@ export class AuthService {
   }
 
   signinUser(email: string, password: string) {
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+    localStorage.setItem('returnUrl', returnUrl);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        this.router.navigate(['/']);
+        if (this.user) {
+          let returnUrl = localStorage.getItem('returnUrl');
+          this.router.navigateByUrl(returnUrl);
+        }
         firebase
           .auth()
           .currentUser.getIdToken()
