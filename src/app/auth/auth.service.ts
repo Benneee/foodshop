@@ -2,6 +2,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private userService: UserService
   ) {
     afAuth.authState.subscribe(user => (this.user = user));
   }
@@ -31,15 +33,20 @@ export class AuthService {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        if (this.user) {
-          let returnUrl = localStorage.getItem('returnUrl');
-          this.router.navigateByUrl(returnUrl);
-        }
         firebase
           .auth()
           .currentUser.getIdToken()
           .then((token: string) => (this.token = token));
         console.log('sign in successful:', res);
+        if (this.user) {
+          // this.userService.save(this.user);
+          let returnUrl = localStorage.getItem('returnUrl');
+          if (returnUrl === 'null') {
+            this.router.navigate(['/']);
+          } else {
+            this.router.navigateByUrl(returnUrl);
+          }
+        }
       })
       .catch(err => console.log('error signing in:', err));
   }
