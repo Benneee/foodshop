@@ -1,3 +1,4 @@
+import { SpinnerComponent } from './spinner/spinner.component';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AuthGuard } from './auth/authguard.service';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -15,6 +16,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'spinner', component: SpinnerComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },
