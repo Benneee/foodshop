@@ -25,6 +25,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
