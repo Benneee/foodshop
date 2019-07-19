@@ -39,13 +39,13 @@ export class AuthService {
           .then((token: string) => (this.token = token));
         console.log('sign in successful:', res);
         if (this.user) {
-          // this.userService.save(this.user);
           let returnUrl = localStorage.getItem('returnUrl');
           if (returnUrl === 'null') {
             this.router.navigate(['/']);
           } else {
             this.router.navigateByUrl(returnUrl);
           }
+          this.userService.save(this.user);
         }
       })
       .catch(err => console.log('error signing in:', err));
