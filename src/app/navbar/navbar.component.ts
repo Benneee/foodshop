@@ -1,5 +1,6 @@
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'navbar',
@@ -8,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
+  user: User;
 
   // Because we always have to unsubscribe from Firebase, we'll use the async pipe to handle the subscription below in the template
 
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    authService.appUser$.subscribe(user => (this.user = user));
+  }
 
   ngOnInit() {}
 

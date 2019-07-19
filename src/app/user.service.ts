@@ -1,5 +1,9 @@
+import { User } from './models/user.model';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import {
+  AngularFireDatabase,
+  FirebaseObjectObservable
+} from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,5 +22,9 @@ export class UserService {
       name: user.email,
       email: user.email
     });
+  }
+
+  get(uid: string): FirebaseObjectObservable<User> {
+    return this.db.object('/users/' + uid);
   }
 }
