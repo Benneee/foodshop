@@ -1,13 +1,19 @@
+import { User } from './../models/user.model';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class AuthService {
   token: string;
   user: firebase.User;
+  newUser: User;
+  user$: Observable<firebase.User>;
 
   constructor(
     private router: Router,
@@ -16,6 +22,7 @@ export class AuthService {
     private userService: UserService
   ) {
     afAuth.authState.subscribe(user => (this.user = user));
+    this.user$ = afAuth.authState;
   }
 
   signupUser(email: string, password: string) {
@@ -68,5 +75,14 @@ export class AuthService {
 
   isAuthenticated() {
     return this.token != null;
+  }
+  get appUser$(): Observable<User> {
+    return this.user$.switchMap(user => {
+      if (user) {
+        return this.userService.get(user.uid);
+      } else {
+        return Observable.of(null);
+      }
+    });
   }
 }

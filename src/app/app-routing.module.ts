@@ -1,3 +1,4 @@
+import { AdminAuthGuard } from './admin-auth-guard.service';
 import { AuthGuard } from './auth/authguard.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
@@ -31,12 +32,12 @@ const routes: Routes = [
   {
     path: 'admin/products',
     component: AdminProductsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'admin/orders',
     component: AdminOrdersComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, AuthGuard]
   }
 ];
 
