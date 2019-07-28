@@ -1,6 +1,7 @@
-import { CategoryService } from './category.service';
+import { ProductService } from './providers/product.service';
+import { CategoryService } from './providers/category.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
-import { UserService } from './user.service';
+import { UserService } from './providers/user.service';
 import { AuthGuard } from './auth/authguard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -54,14 +55,16 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AngularFireAuthModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     UserService,
     AdminAuthGuard,
-    CategoryService
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
