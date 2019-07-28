@@ -8,7 +8,6 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
@@ -29,6 +28,7 @@ import { AuthService } from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     FormsModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CustomFormsModule
   ],
   providers: [
     AuthService,
