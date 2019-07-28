@@ -13,6 +13,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,24 +23,32 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 
-  { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
+  // Uncomment these ones below, then delete the other ones currently running without guard
+  // { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  // { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
+  { path: 'my/orders', component: MyOrdersComponent },
+  { path: 'check-out', component: CheckOutComponent },
   {
     path: 'order-success',
     component: OrderSuccessComponent,
     canActivate: [AuthGuard]
   },
-
+  // Uncomment the the guards code
   // Admin Routes
   {
     path: 'admin/products',
-    component: AdminProductsComponent,
-    canActivate: [AuthGuard, AdminAuthGuard]
+    component: AdminProductsComponent
+    // canActivate: [AuthGuard, AdminAuthGuard]
+  },
+  {
+    path: 'admin/products/new',
+    component: ProductFormComponent
+    // canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'admin/orders',
-    component: AdminOrdersComponent,
-    canActivate: [AuthGuard, AuthGuard]
+    component: AdminOrdersComponent
+    // canActivate: [AuthGuard, AuthGuard]
   }
 ];
 
