@@ -1,3 +1,4 @@
+import { CategoryService } from './category.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
 import { AuthGuard } from './auth/authguard.service';
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AdminOrdersComponent,
     LoginComponent,
     SignupComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,13 @@ import { SpinnerComponent } from './spinner/spinner.component';
     NgbModule,
     HttpClientModule
   ],
-  providers: [AuthService, AuthGuard, UserService, AdminAuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    UserService,
+    AdminAuthGuard,
+    CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
