@@ -1,11 +1,10 @@
-import { User } from '../models/user.model';
 import { Injectable } from '@angular/core';
 import {
   AngularFireDatabase,
   FirebaseObjectObservable
 } from 'angularfire2/database';
 import * as firebase from 'firebase';
-import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class UserService {
