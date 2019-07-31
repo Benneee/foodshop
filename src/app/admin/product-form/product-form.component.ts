@@ -17,37 +17,25 @@ export class ProductFormComponent implements OnInit {
   // $: to tell any interested party that categories is an observable
   categories$;
   product = {};
-  title;
-  price;
-  category;
-  imageUrl;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private productService: ProductService
-  ) {
-    this.categories$ = categoryService.getCategories();
-    // let id = this.route.snapshot.paramMap.get('id');
-    // if (id) {
-    //   this.productService
-    //     .getSingleProduct(id)
-    //     .take(1)
-    //     .subscribe(p => (this.product = p));
-    // }
-    this.route.paramMap.subscribe(p => {
-      const id = p.get('id');
-      if (id) {
-        this.productService
-          .getSingleProduct(id)
-          .take(1)
-          .subscribe(p => (this.product = p));
-      }
-    });
-  }
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.categories$ = this.categoryService.getCategories();
+
+    let id = this.route.snapshot.params['id'];
+    if (id) {
+      this.productService
+        .getSingleProduct(id)
+        .take(1)
+        .subscribe(p => (this.product = p));
+    }
+  }
 
   save(productForm: NgForm) {
     // console.log(productForm.value);
