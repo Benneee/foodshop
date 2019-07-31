@@ -29,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CustomFormsModule } from 'ng2-validation';
+import { DataTableModule } from 'angular5-data-table';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CustomFormsModule } from 'ng2-validation';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    DataTableModule.forRoot()
   ],
   providers: [
     AuthService,

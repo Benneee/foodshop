@@ -12,6 +12,37 @@
   />
 </p>
 
+<data-table
+  [items]="items"
+  [itemCount]="itemCount"
+  (reload)="reloadItems($event)"
+>
+  <data-table-column
+    [property]="'title'"
+    [header]="'Title'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+  </data-table-column>
+
+  <data-table-column
+    [property]="'price'"
+    [header]="'Title'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+    <ng-template #dataTableCell let-item="item">
+      {{ item.price | currency: 'NGN':'symbol' }}
+    </ng-template>
+  </data-table-column>
+
+  <data-table-column [property]="'$key'">
+    <ng-template #dataTableCell let-item="item">
+      <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+    </ng-template>
+  </data-table-column>
+</data-table>
+<!-- 
 <table class="table">
   <thead>
     <tr>
@@ -33,8 +64,7 @@
       <td>{{ p.title }}</td>
       <td>{{ p.price }}</td>
       <td>
-        <a [routerLink]="['/admin/products/', p.$key]">Edit</a>
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
