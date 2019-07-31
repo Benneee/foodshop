@@ -17,6 +17,12 @@ export class ProductFormComponent implements OnInit {
   // $: to tell any interested party that categories is an observable
   categories$;
   product = {};
+  id: any;
+
+  formBtn = {
+    type: 'create',
+    text: 'Save'
+  };
 
   constructor(
     private router: Router,
@@ -28,19 +34,41 @@ export class ProductFormComponent implements OnInit {
   ngOnInit() {
     this.categories$ = this.categoryService.getCategories();
 
-    let id = this.route.snapshot.params['id'];
-    if (id) {
+    // let id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      this.formBtn = {
+        type: 'update',
+        text: 'Update'
+      };
       this.productService
-        .getSingleProduct(id)
+        .getSingleProduct(this.id)
         .take(1)
         .subscribe(p => (this.product = p));
     }
   }
 
   save(productForm: NgForm) {
-    // console.log(productForm.value);
-    const data = productForm.value;
-    this.productService.create(data);
+    /**
+     * We can call the create or update method within this method,
+     * However, this depends on the ID of the product in question
+     * Hence, we will need the ID property here as well, so we first make the ID property above a universal property and not just a variable
+     */
+
+    if (this.id) {
+      this.productService.updateProduct(this.id, productForm.value);
+      console.log(`Product with ${this.id} updated successfully`);
+    } else {
+      const data = productForm.value;
+      this.productService.createProduct(data);
+    }
+    this.router.navigate(['/admin/products']);
+  }
+
+  delete() {
+    if (!confirm('Are you sure you want to delete this product?')) return;
+
+    this.productService.deleteProduct(this.id);
     this.router.navigate(['/admin/products']);
   }
 }

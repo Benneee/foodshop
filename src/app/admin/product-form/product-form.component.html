@@ -96,7 +96,9 @@
         </div>
       </div>
 
-      <button class="btn btn-primary btn-block">Save</button>
+      <button class="btn btn-primary btn-block mb-2">{{ formBtn['text'] }}</button>
+      <!-- We have to change the button type to avoid default behaviour of submitting -->
+      <button type="button" (click)="delete()" class="btn btn-danger btn-block"> Delete </button>
     </form>
   </div>
 
