@@ -1,1 +1,49 @@
-<p>products works!</p>
+<div class="row">
+  <div class="col-3">
+    <!-- Categories -->
+    <div class="list-group">
+      <!-- The class.active is feeding on the class property of category to mark any category that has been selected and give it a distinct look -->
+      <a
+        class="list-group-item list-group-item-action"
+        [class.active]="!category"
+        routerLInk="/"
+        >All Categories</a
+      >
+      <a
+        class="list-group-item list-group-item-action"
+        routerLink="/"
+        [queryParams]="{ category: c.$key }"
+        *ngFor="let c of categories$ | async"
+        [class.active]="category === c.$key"
+      >
+        {{ c?.name }}
+      </a>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row">
+      <!-- The ngFor directive provides the index property for us during iterations -->
+      <!-- We use it to set the linebreak with the condition described below -->
+      <ng-container *ngFor="let p of filteredProducts; let i = index">
+        <div class="col">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" [src]="p?.imageUrl" [alt]="p?.title" />
+            <div class="card-body">
+              <h4 class="card-title">{{ p?.title }}</h4>
+              <p class="card-text">{{ p?.price | currency: 'NGN':'symbol' }}</p>
+              <p>
+                <a href="#" class="btn btn-primary">Add to Cart</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- This is a linebreak -->
+        <!-- We make it happen only after two cards have been rendered -->
+        <!-- So i + 1 because iteration is zero-based and if divided by 2 without any remainder, the linebreak will happen -->
+        <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>

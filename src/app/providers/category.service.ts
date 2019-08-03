@@ -5,7 +5,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class CategoryService {
   constructor(private db: AngularFireDatabase) {}
 
-  getCategories() {
+  getAll() {
     return this.db.list('/categories', {
       // This is to tell Firebase to order the categories by the child property: name
       // See AngularFire Docs for more details on the various categories to work with..

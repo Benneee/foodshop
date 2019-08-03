@@ -32,7 +32,7 @@ export class ProductFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.categories$ = this.categoryService.getCategories();
+    this.categories$ = this.categoryService.getAll();
 
     // let id = this.route.snapshot.params['id'];
     this.id = this.route.snapshot.params['id'];
