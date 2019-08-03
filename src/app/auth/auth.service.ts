@@ -49,9 +49,11 @@ export class AuthService {
           let returnUrl = localStorage.getItem('returnUrl');
           if (returnUrl === 'null') {
             this.router.navigate(['/']);
-          } else {
+          } else if (returnUrl) {
+            localStorage.removeItem('returnUrl');
             this.router.navigateByUrl(returnUrl);
           }
+
           this.userService.save(this.user);
         }
       })

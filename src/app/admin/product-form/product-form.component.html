@@ -104,7 +104,7 @@
 
   <!-- Preview card -->
   <div class="col-md-6 col-sm-12">
-    <div class="card" style="width: 20rem">
+    <div *ngIf="product['title']" class="card" style="width: 20rem">
       <img
         class="img-fluid"
         [src]="product['imageUrl']"
