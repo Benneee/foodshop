@@ -104,18 +104,6 @@
 
   <!-- Preview card -->
   <div class="col-md-6 col-sm-12">
-    <div *ngIf="product['title']" class="card" style="width: 20rem">
-      <img
-        class="img-fluid"
-        [src]="product['imageUrl']"
-        *ngIf="product['imageUrl']"
-      />
-      <div class="card-body">
-        <h4 class="card-title">{{ product['title'] }}</h4>
-        <p class="card-text">
-          {{ product['price'] | currency: 'NGN':'symbol' }}
-        </p>
-      </div>
-    </div>
+    <product-card [product]="product" [showActions]="false"></product-card>
   </div>
 </div>

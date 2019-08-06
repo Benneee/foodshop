@@ -16,7 +16,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: ProductsComponent },
   { path: 'spinner', component: SpinnerComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
@@ -24,10 +24,10 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
 
   // Uncomment these ones below, then delete the other ones currently running without guard
-  // { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-  // { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
-  { path: 'my/orders', component: MyOrdersComponent },
-  { path: 'check-out', component: CheckOutComponent },
+  { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
+  // { path: 'my/orders', component: MyOrdersComponent },
+  // { path: 'check-out', component: CheckOutComponent },
   {
     path: 'order-success',
     component: OrderSuccessComponent,
@@ -37,23 +37,23 @@ const routes: Routes = [
   // Admin Routes
   {
     path: 'admin/products/new',
-    component: ProductFormComponent
-    // canActivate: [AuthGuard, AdminAuthGuard]
+    component: ProductFormComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'admin/products/:id',
-    component: ProductFormComponent
-    // canActivate: [AuthGuard, AdminAuthGuard]
+    component: ProductFormComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'admin/products',
-    component: AdminProductsComponent
-    // canActivate: [AuthGuard, AdminAuthGuard]
+    component: AdminProductsComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
   },
   {
     path: 'admin/orders',
-    component: AdminOrdersComponent
-    // canActivate: [AuthGuard, AuthGuard]
+    component: AdminOrdersComponent,
+    canActivate: [AuthGuard, AuthGuard]
   }
 ];
 
