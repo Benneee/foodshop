@@ -12,12 +12,18 @@ export class ShoppingCartService {
     });
   }
 
+  private getItem(cartId: string, productId: string) {
+    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
+  }
+
   // To get the details of a cart from Frebase
-  private getCart(cartId: string) {
+  async getCart() {
+    // Adding async and await to this method makes the cartId move from a type of Promise<any> to just any!
+    let cartId = await this.getOrCreateCartId();
     return this.db.object('/shopping-carts/' + cartId);
   }
 
-  private async getOrCreateCartId() {
+  private async getOrCreateCartId(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (!cartId) return cartId;
 
@@ -26,15 +32,22 @@ export class ShoppingCartService {
     return result.key;
   }
 
-  // async addToCart(product: Product) {
-  //   let cartId = await this.getOrCreateCartId();
-  //   // We need to get a reference to the product in the shopping cart from Firebase
-  //   let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.$key);
-  //   item$.take(1).subscribe(item => {
-  //     // A method called "exists" is present in the objects we get from Firebase
-  //     if (item.$exists()) {
-  //       item$.update({quantity: item.quantity + 1})
-  //     }
-  //   })
-  // }
+  async addToCart(product: Product) {
+    this.updateCartQuantity(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateCartQuantity(product, -1);
+  }
+
+  private async updateCartQuantity(product: Product, change: number) {
+    let cartId = await this.getOrCreateCartId();
+    let item$ = this.getItem(cartId, product.$key);
+    item$.take(1).subscribe(item => {
+      item$.update({
+        product: product,
+        quantity: (item['quantity'] || 0) + change
+      });
+    });
+  }
 }
