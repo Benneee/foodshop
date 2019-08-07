@@ -1,22 +1,30 @@
+import { ShoppingCartService } from './../providers/shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../providers/product.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Product } from '../models/product.model';
 // We use the switchmap operator to handle the issue of nested subscriptions
 // The switchmap operator helps us to switch from one obs to another
 import 'rxjs/add/operator/switchMap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: any = [];
   filteredProducts: Product[] = [];
   category: string;
   product: string;
-  constructor(route: ActivatedRoute, productService: ProductService) {
+  cart: any;
+  subscription: Subscription;
+  constructor(
+    route: ActivatedRoute,
+    productService: ProductService,
+    private shoppingCartService: ShoppingCartService
+  ) {
     // productService.getAll().subscribe(products => {
     //   // First, we get the products, so this particular journey can be complete
     //   this.products = products;
@@ -52,10 +60,15 @@ export class ProductsComponent implements OnInit {
           ? this.products.filter(product => product.category === this.category)
           : this.products;
       });
-    /**
-     * We cannot use snapshot here because the component will not be reloaded (destroyed) for another component, the url only changes
-     */
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.subscription = (await this.shoppingCartService.getCart()).subscribe(
+      cart => (this.cart = cart)
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

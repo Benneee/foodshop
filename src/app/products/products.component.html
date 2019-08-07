@@ -9,7 +9,7 @@
       <!-- We use it to set the linebreak with the condition described below -->
       <ng-container *ngFor="let p of filteredProducts; let i = index">
         <div class="col">
-          <product-card [product]="p"></product-card>
+          <product-card [product]="p" [shoppingCart]="cart"></product-card>
         </div>
 
         <!-- This is a linebreak -->
