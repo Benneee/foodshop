@@ -1,3 +1,5 @@
+import { ShoppingCartService } from './../providers/shopping-cart.service';
+import { Product } from './../models/product.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -6,9 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() product;
+  @Input() product: Product;
   @Input() showActions = true;
-  constructor() {}
+  constructor(private cartService: ShoppingCartService) {}
 
   ngOnInit() {}
+  addToCart(product: Product) {
+    let cartId = localStorage.getItem('cartId');
+  }
 }
