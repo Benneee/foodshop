@@ -1,7 +1,14 @@
-import { AngularFireDatabase } from 'angularfire2/database';
+import { ShoppingCart } from './../models/shopping-cart.model';
+import {
+  AngularFireDatabase,
+  FirebaseObjectObservable
+} from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 @Injectable()
 export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {}
@@ -17,10 +24,12 @@ export class ShoppingCartService {
   }
 
   // To get the details of a cart from Frebase
-  async getCart() {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     // Adding async and await to this method makes the cartId move from a type of Promise<any> to just any!
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db
+      .object('/shopping-carts/' + cartId)
+      .map(x => new ShoppingCart(x['items']));
   }
 
   private async getOrCreateCartId(): Promise<string> {

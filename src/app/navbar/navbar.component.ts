@@ -1,6 +1,9 @@
+import { ShoppingCartService } from './../providers/shopping-cart.service';
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
+import { ShoppingCart } from '../models/shopping-cart.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'navbar',
@@ -10,14 +13,19 @@ import { User } from '../models/user.model';
 export class NavbarComponent implements OnInit {
   isNavbarCollapsed = true;
   user: User;
-
+  cart$: Observable<ShoppingCart>;
   // Because we always have to unsubscribe from Firebase, we'll use the async pipe to handle the subscription below in the template
 
-  constructor(private authService: AuthService) {
-    authService.appUser$.subscribe(user => (this.user = user));
-  }
+  constructor(
+    public authService: AuthService,
+    private shoppingCartService: ShoppingCartService
+  ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.authService.appUser$.subscribe(user => (this.user = user));
+
+    this.cart$ = await this.shoppingCartService.getCart();
+  }
 
   logout() {
     this.authService.logoutUser();
