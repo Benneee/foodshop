@@ -23,18 +23,15 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 
-  // Uncomment these ones below, then delete the other ones currently running without guard
   { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
   { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
-  // { path: 'my/orders', component: MyOrdersComponent },
-  // { path: 'check-out', component: CheckOutComponent },
+
   {
-    path: 'order-success',
+    path: 'order-success/:id',
     component: OrderSuccessComponent,
     canActivate: [AuthGuard]
   },
-  // Uncomment the the guards code
-  // Admin Routes
+
   {
     path: 'admin/products/new',
     component: ProductFormComponent,
