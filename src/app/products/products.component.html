@@ -4,7 +4,7 @@
   </div>
 
   <div class="col">
-    <div class="row">
+    <div class="row" *ngIf="cart$ | async as cart">
       <!-- The ngFor directive provides the index property for us during iterations -->
       <!-- We use it to set the linebreak with the condition described below -->
       <ng-container *ngFor="let p of filteredProducts; let i = index">
