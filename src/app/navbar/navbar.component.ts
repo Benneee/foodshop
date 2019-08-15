@@ -1,5 +1,5 @@
-import { ShoppingCartService } from './../providers/shopping-cart.service';
-import { AuthService } from './../auth/auth.service';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
+import { AuthService } from 'shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'shared/models/user.model';
 import { ShoppingCart } from 'shared/models/shopping-cart.model';

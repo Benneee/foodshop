@@ -20,8 +20,8 @@ export class ProductService {
   updateProduct(productId, product) {
     /**
      * Why can't we just access the productId from the product?
-     * If the product we give to this method contains an id property, we will get an error at runtime when the product is passed to the update method.
-     * Firebase does not like when you pass an object to the method that has an ID property or $key property because by definition, id / key should not and cannot be changed
+     * If the product we give to this method contains an id *property, we will get an error at runtime when the product *is passed to the update method.
+     * Firebase does not like when you pass an object to the *method that has an ID property or $key property because by definition, id / key should not and cannot be changed
      */
     return this.db.object('/products/' + productId).update(product);
   }

@@ -1,6 +1,6 @@
-import { ShoppingCartService } from './../providers/shopping-cart.service';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from './../providers/product.service';
+import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Product } from 'shared/models/product.model';
 // We use the switchmap operator to handle the issue of nested subscriptions
