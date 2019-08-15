@@ -1,4 +1,4 @@
-import { User } from './../models/user.model';
+import { User } from 'shared/models/user.model';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';

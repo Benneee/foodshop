@@ -4,7 +4,7 @@ import {
   FirebaseObjectObservable
 } from 'angularfire2/database';
 import * as firebase from 'firebase';
-import { User } from '../models/user.model';
+import { User } from 'shared/models/user.model';
 
 @Injectable()
 export class UserService {

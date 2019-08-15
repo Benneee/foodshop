@@ -1,3 +1,4 @@
+import { environment } from 'environments/environment';
 import { ProductService } from './providers/product.service';
 import { CategoryService } from './providers/category.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
@@ -10,7 +11,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
