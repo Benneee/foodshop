@@ -1,10 +1,10 @@
-import { ShoppingCart } from './../models/shopping-cart.model';
+import { ShoppingCart } from 'shared/models/shopping-cart.model';
 import {
   AngularFireDatabase,
   FirebaseObjectObservable
 } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product.model';
+import { Product } from 'shared/models/product.model';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
