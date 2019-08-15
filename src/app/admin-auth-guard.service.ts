@@ -1,6 +1,6 @@
 import { User } from 'shared/models/user.model';
-import { UserService } from './providers/user.service';
-import { AuthService } from './auth/auth.service';
+import { UserService } from 'shared/services/user.service';
+import { AuthService } from 'shared/services/auth.service';
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import * as firebase from 'firebase';
