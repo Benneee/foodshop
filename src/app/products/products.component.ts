@@ -2,12 +2,12 @@ import { ShoppingCartService } from './../providers/shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../providers/product.service';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Product } from '../models/product.model';
+import { Product } from 'shared/models/product.model';
 // We use the switchmap operator to handle the issue of nested subscriptions
 // The switchmap operator helps us to switch from one obs to another
 import 'rxjs/add/operator/switchMap';
 import { Subscription, Observable } from 'rxjs';
-import { ShoppingCart } from '../models/shopping-cart.model';
+import { ShoppingCart } from 'shared/models/shopping-cart.model';
 
 @Component({
   selector: 'app-products',

@@ -1,4 +1,4 @@
-import { User } from './models/user.model';
+import { User } from 'shared/models/user.model';
 import { UserService } from './providers/user.service';
 import { AuthService } from './auth/auth.service';
 import { Injectable } from '@angular/core';
