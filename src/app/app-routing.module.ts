@@ -1,6 +1,6 @@
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AdminAuthGuard } from './admin-auth-guard.service';
-import { AuthGuard } from './auth/authguard.service';
+import { AuthGuard } from 'shared/services/authguard.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
