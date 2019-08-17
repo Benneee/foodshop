@@ -31,9 +31,9 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CustomFormsModule } from 'ng2-validation';
 import { DataTableModule } from 'angular5-data-table';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
-import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
-import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { ProductQuantityComponent } from 'shared/components/product-quantity/product-quantity.component';
 import { OrderService } from './order.service';
 import { ShoppingcartSummaryComponent } from './shoppingcart-summary/shoppingcart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
