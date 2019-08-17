@@ -1,5 +1,5 @@
 import { ShoppingCart } from 'shared/models/shopping-cart.model';
-import { OrderService } from './../order.service';
+import { OrderService } from 'shared/services/order.service';
 import { AuthService } from 'shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
