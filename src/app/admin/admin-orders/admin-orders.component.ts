@@ -1,4 +1,4 @@
-import { OrderService } from './../../order.service';
+import { OrderService } from 'shared/services/order.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

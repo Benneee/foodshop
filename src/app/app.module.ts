@@ -34,7 +34,7 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from 'shared/components/product-card/product-card.component';
 import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 import { ProductQuantityComponent } from 'shared/components/product-quantity/product-quantity.component';
-import { OrderService } from './order.service';
+import { OrderService } from 'shared/services/order.service';
 import { ShoppingcartSummaryComponent } from './shoppingcart-summary/shoppingcart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
