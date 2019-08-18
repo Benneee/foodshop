@@ -1,91 +1,95 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <a class="navbar-brand" routerLink="/">
-    FoodShop
-  </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    (click)="isNavbarCollapsed = !isNavbarCollapsed"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      FoodShop
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div
-    [ngbCollapse]="isNavbarCollapsed"
-    class="collapse navbar-collapse"
-    id="navbarsExampleDefault"
-  >
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart">
-          <i class="fa fa-shopping-cart fa-2x"></i>
-          <span
-            class="badge badge-warning badge-pill"
-            *ngIf="cart$ | async as cart"
-          >
-            {{ cart.totalItemsCount }}
-          </span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          *ngIf="!authService.isAuthenticated()"
-          routerLink="/signup"
-          >Sign up</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          *ngIf="!authService.isAuthenticated()"
-          routerLink="/login"
-          >Log in</a
-        >
-      </li>
-
-      <li ngbDropdown *ngIf="user" class="nav-item dropdown">
-        <a
-          ngbDropdownToggle
-          class="nav-link dropdown-toggle"
-          id="dropdown01"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          *ngIf="authService.isAuthenticated()"
-          >{{ user.email }}</a
-        >
-        <div
-          ngbDropdownMenu
-          ng
-          class="dropdown-menu"
-          aria-labelledby="dropdown01"
-          *ngIf="authService.isAuthenticated()"
-        >
-          <a class="dropdown-item" routerLInk="/my/orders">My Orders</a>
-          <ng-container *ngIf="user.isAdmin">
-            <a class="dropdown-item" routerLink="/admin/orders"
-              >Manage Orders</a
+    <div
+      [ngbCollapse]="isNavbarCollapsed"
+      class="collapse navbar-collapse"
+      id="navbarsExampleDefault"
+    >
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shopping-cart">
+            <i class="fa fa-shopping-cart fa-2x"></i>
+            <span
+              class="badge badge-warning badge-pill"
+              *ngIf="cart$ | async as cart"
             >
-            <a class="dropdown-item" routerLink="/admin/products"
-              >Manage Products</a
-            >
-          </ng-container>
+              {{ cart.totalItemsCount }}
+            </span>
+          </a>
+        </li>
+
+        <li ngbDropdown *ngIf="user" class="nav-item dropdown">
           <a
-            class="dropdown-item"
+            ngbDropdownToggle
+            class="nav-link dropdown-toggle"
+            id="dropdown01"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
             *ngIf="authService.isAuthenticated()"
-            (click)="logout()"
+            >{{ user.email }}</a
           >
-            Log Out</a
+          <div
+            ngbDropdownMenu
+            ng
+            class="dropdown-menu"
+            aria-labelledby="dropdown01"
+            *ngIf="authService.isAuthenticated()"
           >
-        </div>
-      </li>
-    </ul>
+            <a class="dropdown-item" routerLInk="/my/orders">My Orders</a>
+            <ng-container *ngIf="user.isAdmin">
+              <a class="dropdown-item" routerLink="/admin/orders"
+                >Manage Orders</a
+              >
+              <a class="dropdown-item" routerLink="/admin/products"
+                >Manage Products</a
+              >
+            </ng-container>
+            <a
+              class="dropdown-item"
+              *ngIf="authService.isAuthenticated()"
+              (click)="logout()"
+            >
+              Log Out</a
+            >
+          </div>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="!authService.isAuthenticated()"
+            routerLink="/signup"
+            >Sign up</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="!authService.isAuthenticated()"
+            routerLink="/login"
+            >Log in</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

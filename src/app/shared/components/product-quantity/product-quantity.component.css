@@ -1,0 +1,5 @@
+@media only screen and (max-width: 500px) and (max-width: 768px) {
+  .change-amount {
+    display: none;
+  }
+}
