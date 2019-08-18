@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-md-3 col-sm-12">
     <product-filter [category]="category"></product-filter>
   </div>
 
-  <div class="col">
+  <div class="col-md-9 col-sm-12">
     <div class="row" *ngIf="cart$ | async as cart">
       <!-- The ngFor directive provides the index property for us during iterations -->
       <!-- We use it to set the linebreak with the condition described below -->

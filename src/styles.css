@@ -2,6 +2,19 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~font-awesome/css/font-awesome.css';
 
+:root {
+  --theme-color: rebeccapurple;
+}
+
 body {
   padding-top: 80px;
+}
+
+.navbar-light .navbar-brand {
+  color: var(--theme-color);
+}
+
+.list-group-item.active {
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
 }
