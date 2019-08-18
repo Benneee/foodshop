@@ -1,13 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { DataTableModule } from 'angular5-data-table';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from 'environments/environment';
-import { CustomFormsModule } from 'ng2-validation';
 
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,11 +26,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    DataTableModule.forRoot(),
-    FormsModule,
-    HttpClientModule,
-    FormsModule,
-    CustomFormsModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
