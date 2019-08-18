@@ -17,13 +17,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'products', component: ProductsComponent },
-  { path: 'shopping-cart', component: ShoppingCartComponent },
-]
+  { path: 'shopping-cart', component: ShoppingCartComponent }
+];
 @NgModule({
   declarations: [],
-  imports: [
-    RouterModule.forChild(routes)
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ShoppingRoutingModule { }
+export class ShoppingRoutingModule {}
