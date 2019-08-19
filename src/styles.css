@@ -4,17 +4,58 @@
 
 :root {
   --theme-color: rebeccapurple;
+  --theme-color-hover: rgb(167, 122, 212);
 }
 
 body {
   padding-top: 80px;
 }
 
+h1,
+h2,
+h3 {
+  margin-bottom: 1.5rem;
+}
+
 .navbar-light .navbar-brand {
   color: var(--theme-color);
 }
 
+.navbar {
+  border-bottom: 3px solid #e7e7e7;
+}
+
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
+  color: var(--theme-color);
+}
+
+.fa:hover {
+  color: var(--theme-color-hover);
+}
+
 .list-group-item.active {
   background-color: var(--theme-color);
+  border-color: var(--theme-color);
+}
+
+.btn-primary {
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--theme-color-hover);
+  border-color: var(--theme-color-hover);
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
+}
+
+.form-control:focus {
+  outline: none;
   border-color: var(--theme-color);
 }
