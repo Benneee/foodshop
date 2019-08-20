@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   signinUser(email: string, password: string) {
-    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
     localStorage.setItem('returnUrl', returnUrl);
     firebase
       .auth()
@@ -46,7 +46,7 @@ export class AuthService {
           .then((token: string) => (this.token = token));
         console.log('sign in successful:', res);
         if (this.user) {
-          let returnUrl = localStorage.getItem('returnUrl');
+          const returnUrl = localStorage.getItem('returnUrl');
           if (returnUrl === 'null') {
             this.router.navigate(['/']);
           } else if (returnUrl) {
