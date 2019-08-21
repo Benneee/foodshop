@@ -7,6 +7,7 @@ import { UserService } from 'shared/services/user.service';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,8 @@ export class AuthService {
     private router: Router,
     private route: ActivatedRoute,
     private afAuth: AngularFireAuth,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {
     afAuth.authState.subscribe(user => (this.user = user));
     this.user$ = afAuth.authState;
@@ -44,7 +46,8 @@ export class AuthService {
           .auth()
           .currentUser.getIdToken()
           .then((token: string) => (this.token = token));
-        console.log('sign in successful:', res);
+        // console.log('sign in successful:', res);
+        this.successReport('Sign in successful!', 'Welcome');
         if (this.user) {
           const returnUrl = localStorage.getItem('returnUrl');
           if (returnUrl === 'null') {
@@ -53,11 +56,15 @@ export class AuthService {
             localStorage.removeItem('returnUrl');
             this.router.navigateByUrl(returnUrl);
           }
-
           this.userService.save(this.user);
         }
       })
-      .catch(err => console.log('error signing in:', err));
+      .catch(err => {
+        if (err) {
+          console.log('error signing in:', err);
+          this.errorReport(`${err.message}`, `${err['code']}`);
+        }
+      });
   }
 
   logoutUser() {
@@ -86,5 +93,13 @@ export class AuthService {
         return Observable.of(null);
       }
     });
+  }
+
+  successReport(message, title) {
+    this.toastr.success(message, title);
+  }
+
+  errorReport(message, title) {
+    this.toastr.error(message, title);
   }
 }

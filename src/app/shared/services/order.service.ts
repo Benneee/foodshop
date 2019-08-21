@@ -22,7 +22,7 @@ export class OrderService {
     });
   }
   async placeOrder(order) {
-    let result = await this.db.list('/orders').push(order);
+    const result = await this.db.list('/orders').push(order);
     this.shoppingCartService.clearCart();
     return result;
   }

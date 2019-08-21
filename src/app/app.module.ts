@@ -30,7 +30,11 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFireAuthModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

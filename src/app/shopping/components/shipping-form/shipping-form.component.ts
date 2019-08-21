@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Order } from 'shared/models/order.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'shipping-form',
@@ -20,7 +21,8 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
     let result = await this.orderService.placeOrder(order);
     // $key is used when you read a node off/from firebase
     // key is used when you store something in firebase, e.g, we stored the user's ID...
+    this.toastr.success('Order placed successfully', 'Success');
     this.router.navigate(['/order-success', result.key]);
   }
 }
