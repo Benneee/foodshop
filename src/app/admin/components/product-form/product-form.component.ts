@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { CategoryService } from 'shared/services/category.service';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/take';
+import { ToastrService } from 'ngx-toastr';
 /**
  * The take operator helps to take out just one thing from an observable and the observable is closed by itself without us unsubscribing
  */
@@ -28,7 +29,8 @@ export class ProductFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private productService: ProductService
+    private productService: ProductService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -58,17 +60,29 @@ export class ProductFormComponent implements OnInit {
     if (this.id) {
       this.productService.updateProduct(this.id, productForm.value);
       console.log(`Product with ${this.id} updated successfully`);
+      this.success(`Product with ${this.id} updated successfully`, 'Success');
     } else {
       const data = productForm.value;
       this.productService.createProduct(data);
+      this.success('New product created successfully', 'Success');
     }
     this.router.navigate(['/admin/products']);
   }
 
   delete() {
-    if (!confirm('Are you sure you want to delete this product?')) return;
-
+    if (!confirm('Are you sure you want to delete this product?')) {
+      return;
+    }
     this.productService.deleteProduct(this.id);
+    this.success('Product successfully deleted', 'Success');
     this.router.navigate(['/admin/products']);
+  }
+
+  success(message, title) {
+    this.toastr.success(message, title);
+  }
+
+  error(message, title) {
+    this.toastr.error(message, title);
   }
 }
