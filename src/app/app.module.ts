@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingModule } from './shopping/shopping.module';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 

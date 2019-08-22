@@ -31,8 +31,20 @@ export class AuthService {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(res => console.log('sign up successful:', res))
-      .catch(error => console.log('error signing up:', error));
+      .then(res => {
+        if (this.user) {
+          console.log('sign up successful:', res);
+          this.successReport('Sign up successful', 'Welcome');
+          this.router.navigate(['/']);
+          this.userService.save(this.user);
+        } else {
+          this.router.navigate(['/']);
+        }
+      })
+      .catch(error => {
+        console.log('error signing up:', error);
+        this.errorReport('Sign up failed', 'Error');
+      });
   }
 
   signinUser(email: string, password: string) {
@@ -50,13 +62,15 @@ export class AuthService {
         this.successReport('Sign in successful!', 'Welcome');
         if (this.user) {
           const returnUrl = localStorage.getItem('returnUrl');
-          if (returnUrl === 'null') {
+          if (returnUrl === 'null' || !returnUrl) {
             this.router.navigate(['/']);
           } else if (returnUrl) {
             localStorage.removeItem('returnUrl');
             this.router.navigateByUrl(returnUrl);
           }
           this.userService.save(this.user);
+        } else {
+          this.router.navigate(['/']);
         }
       })
       .catch(err => {

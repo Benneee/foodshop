@@ -15,6 +15,7 @@ import { ShoppingCart } from 'shared/models/shopping-cart.model';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  showLoader = false;
   products: any = [];
   filteredProducts: Product[] = [];
   category: string;
