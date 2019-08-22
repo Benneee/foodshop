@@ -2,7 +2,9 @@
   <img
     *ngIf="product['imageUrl']"
     class="card-img-top"
-    [src]="product?.imageUrl"
+    defaultImage="{{ 'assets/loading.gif' }}"
+    [lazyLoad]="product?.imageUrl"
+    [useSrcset]="true"
     alt="{{ product?.title }}"
   />
   <div class="card-body">
